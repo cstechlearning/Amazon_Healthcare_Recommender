@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+    <title>Amazon Healthcare Search</title>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.2/d3.js"></script>
+    <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/search_3.css" >
+    <link rel="stylesheet" type="text/css" href="css/submit_3.css" >
+    <link rel="stylesheet" type="text/css" href="css/search.css" >
+    <link rel="stylesheet" href="css/topnav.css">
+  
+  
+  <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'>
+  <link rel='stylesheet prefetch' href='http://puertokhalid.com/up/demos/puerto-Mega_Menu/css/normalize.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+       <style> 
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400);
+
+
+h1 {
+  display: table;
+  margin: 0 auto;
+  font-family: Arial;
+  font-weight: 400;
+  font-size: 4em;
+  background: linear-gradient(330deg, #d3bce5 0%, #bc87e5  25%, #8423ce 50%, #480a77 75%, #1c0230 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 200px;
+}  
+    
+    .back{
+       background-image: url("img_src/pill.jpg");
+       background-size: cover;
+       background-repeat: no-repeat;
+       background-position: 30% 5%;
+   }
+
+/*    HTML, BODY {
+       height: 100%;
+       font-smooth: always;
+       font-family: LucidaGrande; /*Neue Helvetica;*/
+
+
+   
+  
+   </style>
+
+  
+</head>
+
+<body class="back">
+
+<div class="topnav">
+  <a class="active" href=index.html>Home</a>
+  <a href= index4.html>Intro</a>
+  <a href=https://github.com/JerryGuangXu/Amazon_Recommender_Project>GitHub</a>
+  <a href=https://www.linkedin.com/in/guang-xu-ba2028114/>About</a>
+</div>
+    <!-- github link  -->
+    <!-- <a id="mylink" href="https://github.com/JerryGuangXu" class="icon-bar"><font color=yellow><u>My GitHub</u></font> -->
+   
+
+    <!-- header title -->
+    <h1 style="margin-top: 0cm;"><center><font size="10">Amazon Healthcare Search</font></center></h1>
+       
+        <!-- Search button -->
+       <center>
+       <form id="search" style="margin-top: 3cm;" action="index2.html" method="GET">
+           <input type="text" name="input" value="back pain">
+
+           <!-- <input type="submit" id="find" class="submit_3" value="Search"/> -->
+       </form>
+       </center>
+
+
+
+
+
+  <!-- <div class="container" style="margin-top: 0cm; margin-left: 1cm" >
+  <nav>
+		<ul class="mcd-menu">
+			<li>
+				<a href="">
+					<i class="fa fa-home"></i>
+					<strong>Intro</strong>
+					<small>what's this web app for?</small>
+				</a>
+				<ul>
+					<li><a href="#"><i class="fa fa-group"></i>First Medicine</a></li>
+                    <li><a href="#"><i class="fa fa-globe"></i>Second Medicine</a></li>
+
+					<li><a href="#"><i class="fa fa-trophy"></i>Third Medicine</a></li>
+					<li><a href="#"><i class="fa fa-certificate"></i>Fourth Medicine</a></li>
+				</ul>
+
+			</li>
+
+
+
+
+
+
+			<li>
+				<a href="" class="active">
+					<i class="fa fa-edit"></i>
+					<strong>Today's Top Medicine</strong>
+					<small>sweet home</small>
+				</a>
+				<ul>
+					<li><a href="#"><i class="fa fa-globe"></i>Mission</a></li>
+					<li>
+						<a href="#"><i class="fa fa-group"></i>Our Team</a>
+						<ul>
+							<li><a href="#"><i class="fa fa-female"></i>Leyla Sparks</a></li>
+							<li>
+								<a href="#"><i class="fa fa-male"></i>Gleb Ismailov</a>
+								<ul>
+									<li><a href="#"><i class="fa fa-leaf"></i>About</a></li>
+									<li><a href="#"><i class="fa fa-tasks"></i>Skills</a></li>
+								</ul>
+							</li>
+							<li><a href="#"><i class="fa fa-female"></i>Viktoria Gibbers</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><i class="fa fa-trophy"></i>Rewards</a></li>
+					<li><a href="#"><i class="fa fa-certificate"></i>Certificates</a></li>
+				</ul>
+			</li>
+
+
+
+
+			<li>
+				<a href="">
+					<i class="fa fa-gift"></i>
+					<strong>Best Product for gift</strong>
+					<small>sweet home</small>
+				</a>
+
+				<ul>
+					<li><a href="#"><i class="fa fa-globe"></i>Mission</a></li>
+					<li>
+						<a href="#"><i class="fa fa-group"></i>Our Team</a>
+						<ul>
+							<li><a href="#"><i class="fa fa-female"></i>Leyla Sparks</a></li>
+							<li>
+								<a href="#"><i class="fa fa-male"></i>Gleb Ismailov</a>
+								<ul>
+									<li><a href="#"><i class="fa fa-leaf"></i>About</a></li>
+									<li><a href="#"><i class="fa fa-tasks"></i>Skills</a></li>
+								</ul>
+							</li>
+							<li><a href="#"><i class="fa fa-female"></i>Viktoria Gibbers</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><i class="fa fa-trophy"></i>Rewards</a></li>
+					<li><a href="#"><i class="fa fa-certificate"></i>Certificates</a></li>
+				</ul>
+			</li>
+
+
+
+			<li>
+				<a href="">
+					<i class="fa fa-globe"></i>
+					<strong>Global Medicine Trend</strong>
+					<small>sweet home</small>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<i class="fa fa-comments-o"></i>
+					<strong>Personal Recommendation</strong>
+					<small>what they say</small>
+				</a>
+				<ul>
+					<li><a href="#"><i class="fa fa-globe"></i>Mission</a></li>
+					<li>
+						<a href="#"><i class="fa fa-group"></i>Our Team</a>
+						<ul>
+							<li><a href="#"><i class="fa fa-female"></i>Leyla Sparks</a></li>
+							<li>
+								<a href="#"><i class="fa fa-male"></i>Gleb Ismailov</a>
+								<ul>
+									<li><a href="#"><i class="fa fa-leaf"></i>About</a></li>
+									<li><a href="#"><i class="fa fa-tasks"></i>Skills</a></li>
+								</ul>
+							</li>
+							<li><a href="#"><i class="fa fa-female"></i>Viktoria Gibbers</a></li>
+						</ul>
+					</li>
+					<li><a href="#"><i class="fa fa-trophy"></i>Rewards</a></li>
+					<li><a href="#"><i class="fa fa-certificate"></i>Certificates</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="">
+					<i class="fa fa-picture-o"></i>
+					<strong>Best Seller Pics</strong>
+					<small>sweet home</small>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<i class="fa fa-envelope-o"></i>
+					<strong>Contacts</strong>
+					<small>drop a line</small>
+				</a>
+			</li>
+			<! <li class="float">
+				<a class="search">
+					<input type="text" value="search medicine name or id...">
+					<button><i class="fa fa-search"></i></button>
+				</a>
+				<a href="" class="search-mobile">
+					<i class="fa fa-search"></i>
+				</a>
+			</li> -->
+<!-- 		</ul>
+	</nav>
+</div> --> 
+
+
+   <!-- Search button -->
+   <!-- <center>
+    <form id="search" style="margin-top: -10cm;" action="index3.html" method="GET">
+           <input type="text" size="40" name="input"/>
+
+           <input type="submit" id="find" class="submit_3" value="Search"/>
+    </form>
+    </center>
+ -->
+
+
+   <!-- Search button -->
+      <!--  <form id="search-form_3" style="margin-top: -10cm;" action="index3.html" method="GET">
+           <input type="text"  id="hw_id" class="search_3" name="input">
+
+           <input type="submit" id="find" class="submit_3" value="Search"/>
+       </form> -->
+
+
+
+
+    
+
+    <p align="center" style="margin-top: 12cm;"> <font color = purple face="Arial">
+      <!-- <font size="4"> --> 
+©2017 BY GUANG XU, GEORGIA INSTITUE OF TECHNOLOGY </font>
+
+<!-- </font> --><br><br>
+      <font face="Brush Script MT" size="5"><a href="https://www.linkedin.com/in/guang-xu-ba2028114/"> Guang Xu's <u>Resume</u></a></font><br><br>
+
+  <!--     Brush Script MT -->
+
+    </font>
+    </p>
+
+
+
+
+<!-- *** -->
+
+    <script>
+    // var doc = nlp('dog')
+    // var str1 = doc.nouns().toPlural().out('text')
+    var str1 = nlp('pain relief medicine').ngrams().sort().out('array')
+    console.log(str1)
+  
+    </script>
+
+
+
+
+  
+  
+</body>
+</html>

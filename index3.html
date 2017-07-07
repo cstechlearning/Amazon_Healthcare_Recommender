@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Elastic stroke CSS + SVG</title>
+  
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.2/d3.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>  
+
+<!-- this is CSS: 1. <style> 2.put it in xx.css-->
+    <link rel="stylesheet" href="css/icon.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/topnav.css">
+     <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'>
+    <link rel='stylesheet prefetch' href='http://puertokhalid.com/up/demos/puerto-Mega_Menu/css/normalize.css'>
+     <style>
+     #customers {
+    font-family: Arial;
+    border-collapse: collapse;
+    width: 50%;
+     }
+
+    #customers td, #customers th {
+    border: 1px solid brown;
+    padding: 8px;
+    }
+
+    #customers tr:nth-child(even){background-color: white;}
+
+    #customers tr:hover {background-color: #ddd;}
+
+    #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #c54dea;
+    color: white;
+}
+
+
+
+    #loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 250px;
+  height: 250px;
+  margin: -125px 0 0 -125px;
+  border: 16px solid #81ccea;
+  border-radius: 50%;
+  border-top: 16px solid #e7e1ea;
+  width: 130px;
+  height: 130px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+
+
+.goBack{
+       width:auto;
+       font:16px Trebuchet MS, sans-serif;     /* Font size and family*/
+       color:#3d3737;     /* Font color */
+       background:#ffd37c;     /* Background color */ 
+       /*#ffd37c*/
+       margin:0;
+       padding:15px 20px;     /* First value is top/bottom padding & the second is left/right. Increase/decrease as required */
+       border:none;
+       -moz-border-radius:7px;
+       -webkit-border-radius:7px;     /* Corner radius. Change all three values */
+       border-radius:7px;
+      -moz-box-shadow:0 0 10px #000;
+       -webkit-box-shadow:0 0 10px #000;     /* Box shadow radius and color */
+       box-shadow:0 0 15px #000;
+       cursor:pointer;
+      }
+     .goBack:hover {
+        background:#c54dea;     /* Hover background color */ 
+        color:#FFFFFF;          /* Hover color */
+      } 
+     </style>
+
+  
+</head>
+
+<body>
+
+<div class="topnav">
+  <a class="active" href=index.html>Home</a>
+  <a href= index4.html>Intro</a>
+  <a href=https://github.com/JerryGuangXu/Amazon_Recommender_Project>GitHub</a>
+  <a href=https://www.linkedin.com/in/guang-xu-ba2028114/>About</a>
+</div>
+
+
+<!-- <p id="demo">"No information"</p> -->
+<div id="loader"></div>
+<input type="button" id="btm1" class="goBack" style="margin-left: 2.5cm; margin-top: 1cm;" value="Loading Data Now... " onclick="history.back(-1)" />
+<div>
+ <table id="customers" style="margin-left: 5cm; margin-top: 1cm"></table>
+</div>
+<input type="button" id="btm2" class="goBack" style="margin-left: 2.5cm; margin-top: 2cm;" value="Please wait 3 seconds" onclick="history.back(-1)" />
+  <!-- <tr>
+    <th>Name</th>
+    <th>Pengyang Wu</th>
+  </tr>
+  <tr>
+    <td>Description</td>
+    <td>婊子</td>
+  </tr>
+  <tr>
+    <td>Summary</td>
+    <td>Christina Berglund</td>
+  </tr>
+  <tr>
+    <td>Category</td>
+    <td>Francisco Chang</td>
+  </tr> -->
+  
+
+<script>
+    var parameters = window.location.search.substring(1);
+    var input1 = decodeURIComponent(parameters.split("=")[1]).replace(/\+/g,' '); 
+    // var inputa = new RegExp("\\b"+input1+"\\b");
+
+    // document.getElementById("demo").innerHTML = parameters;
+
+    d3.json("keyword-dic-amazon-health-50000-similarity.json", function(err, json_object) {
+      
+      var keys = Object.keys(json_object)
+      for(i=0; i<keys.length; i++){
+
+          if(i==0){
+                 console.log('Change text on the button here!...')
+
+                 var elem1 = document.getElementById("btm1");
+                 var elem2 = document.getElementById("btm2");
+
+                 
+                 // if (elem.value=="Close Curtain") 
+                  elem1.value = "Go Back";
+                  elem2.value = "Go Back";
+
+                 // document.button.innerHTML = 'wait';
+               }
+
+          if(input1 == keys[i] && json_object[keys[i]]['price'].match(/^[0-9. ]+$/) != null) {
+            
+            console.log(json_object[keys[i]])
+            var outkeys = Object.keys(json_object[keys[i]])
+            var a1 = document.createElement("th")
+            a1.innerHTML = 'Name'
+            var a2 = document.createElement("th")
+            a2.innerHTML = json_object[keys[i]]['name']
+
+
+            var a3 = document.createElement("tr")
+            a3.appendChild(a1)
+            a3.appendChild(a2)
+            // a3.setAttribute( 'style', 'color:purple;' )
+            
+
+
+            var u1 = document.createElement("td")
+            u1.innerHTML = 'Amazon Link'
+
+            
+            var x2 = document.createElement("a")
+            x2.innerHTML = json_object[keys[i]]['name']
+            var link = 'https://amazon.com/dp/' + keys[i].split(" ****** ")[0]
+            x2.href = link
+
+            var u2 = document.createElement("td")
+            u2.appendChild(x2)
+
+
+            var u3 = document.createElement("tr")
+            u3.appendChild(u1)
+            u3.appendChild(u2)
+
+           
+            var b1 = document.createElement("td")
+            b1.innerHTML = 'Description'
+            var b2 = document.createElement("td")
+            b2.innerHTML = json_object[keys[i]]['des']
+
+            var b3 = document.createElement("tr")
+            b3.appendChild(b1)
+            b3.appendChild(b2)
+
+            
+            
+            var c1 = document.createElement("td")
+            c1.innerHTML = 'Price'
+            var c2 = document.createElement("td")
+            c2.innerHTML = '$' + json_object[keys[i]]['price']
+
+            var c3 = document.createElement("tr")
+            c3.appendChild(c1)
+            c3.appendChild(c2)
+
+
+           
+            var d1 = document.createElement("td")
+            d1.innerHTML = 'Average Score'
+            var d2 = document.createElement("td")
+            d2.innerHTML = json_object[keys[i]]['ave'] + '/ 5.0'
+
+            var d3 = document.createElement("tr")
+            d3.appendChild(d1)
+            d3.appendChild(d2)
+
+
+
+
+          
+            var e1 = document.createElement("td")
+            e1.innerHTML = 'Rank Category'
+            var e2 = document.createElement("td")
+            e2.innerHTML = json_object[keys[i]]['salekey']
+
+            var e3 = document.createElement("tr")
+            e3.appendChild(e1)
+            e3.appendChild(e2)
+            
+
+
+          
+            var f1 = document.createElement("td")
+            f1.innerHTML = 'Rank'
+            var f2 = document.createElement("td")
+            f2.innerHTML = json_object[keys[i]]['salevalue']
+
+            var f3 = document.createElement("tr")
+            f3.appendChild(f1)
+            f3.appendChild(f2)
+
+             
+            outkeys = Object.keys(json_object[keys[i]]['similar'])
+
+            var g1 = document.createElement("td")
+            g1.innerHTML = 'Recommendation'
+            var g2 = document.createElement("td")
+
+
+            for (j = 0; j < outkeys.length; j++) {
+
+               var para = document.createElement("a")
+               var link = 'https://amazon.com/dp/' + outkeys[j].split(" ****** ")[0]
+               console.log(link)
+               para.href= link;
+               para.innerHTML = outkeys[j].split(" ****** ")[1].trim() + "<br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp"  + "<i><font style='color:#cd3266' size='3px'>" + "(Score:" + json_object[keys[i]]['similar'][outkeys[j]] + ")" + "</font></i>" + "<br>"
+               
+               g2.appendChild(para)
+
+            }
+            
+
+            var g3 = document.createElement("tr")
+            g3.appendChild(g1)
+            g3.appendChild(g2)
+
+
+
+
+           document.getElementById("customers").appendChild(a3);
+           document.getElementById("customers").appendChild(u3);
+           document.getElementById("customers").appendChild(b3);
+           document.getElementById("customers").appendChild(c3);
+           document.getElementById("customers").appendChild(d3);
+           document.getElementById("customers").appendChild(e3);
+           document.getElementById("customers").appendChild(f3);
+           document.getElementById("customers").appendChild(g3);
+           // document.getElementById("customers").appendChild(b3);
+           // document.getElementById("customers").appendChild(c3);
+
+            // json_object[keys[i]]['name']
+          }
+
+      }
+
+
+    });
+    
+    $(window).load(function() {
+        // Animate loader off screen
+        $("#loader").animate({
+            top: -200
+            // -200
+        }, 1500);
+    });
+   
+</script>
+  
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

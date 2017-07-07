@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <!-- <meta http-equiv="refresh" content="0; url=index2.html" /> -->
+    <title>Solution Store</title>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.2/d3.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/compromise@latest/builds/compromise.min.js"></script>  
+
+<!-- this is CSS: 1. <style> 2.put it in xx.css-->
+    <link rel="stylesheet" href="css/icon.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/topnav.css">
+     <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css'>
+    <link rel='stylesheet prefetch' href='http://puertokhalid.com/up/demos/puerto-Mega_Menu/css/normalize.css'>
+     
+    <style>
+
+
+  h1 {
+  display: table;
+  margin: 0 auto;
+  font-family: Arial;
+  font-weight: 400;
+  font-size: 4em;
+  background: linear-gradient(330deg, #d3bce5 0%, #bc87e5  25%, #8423ce 50%, #480a77 75%, #1c0230 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 200px;
+} 
+
+
+
+
+
+
+
+	 .goBack{
+       width:auto;
+       font:16px Trebuchet MS, sans-serif;     /* Font size and family*/
+       color:#3d3737;     /* Font color */
+       background:#ffd37c;     /* Background color */ 
+       /*#ffd37c*/
+       margin:0;
+       padding:15px 20px;     /* First value is top/bottom padding & the second is left/right. Increase/decrease as required */
+       border:none;
+       -moz-border-radius:7px;
+       -webkit-border-radius:7px;     /* Corner radius. Change all three values */
+       border-radius:7px;
+      -moz-box-shadow:0 0 10px #000;
+       -webkit-box-shadow:0 0 10px #000;     /* Box shadow radius and color */
+       box-shadow:0 0 15px #000;
+       cursor:pointer;
+      }
+     .goBack:hover {
+        background:#c54dea;     /* Hover background color */ 
+        color:#FFFFFF;          /* Hover color */
+      } 
+
+
+
+
+
+    #loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 250px;
+  height: 250px;
+  margin: -125px 0 0 -125px;
+  border: 16px solid #81ccea;
+  border-radius: 50%;
+  border-top: 16px solid #e7e1ea;
+  width: 130px;
+  height: 130px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+
+    </style>
+
+ </head>
+
+
+<body>
+
+
+<div class="topnav">
+  <a class="active" href=index.html>Home</a>
+  <a href= index4.html>Intro</a>
+  <a href=https://github.com/JerryGuangXu/Amazon_Recommender_Project>GitHub</a>
+  <a href=https://www.linkedin.com/in/guang-xu-ba2028114/>About</a>
+</div>
+
+<div style="padding-left:16px">
+  <h3>Notes</h3>
+  <p><font face="Arial">Search for all similar keywords and Amazon products; <br> Both keywords and products are sorted by RAKE scores.</font></p>
+</div>
+
+
+
+<h1 style="margin-top: -2cm;"><font size="10" color=purple ><center>Keywords and Products You May Like</center></font></h1>
+<!-- <p id="try"></p> -->
+<!-- <p id="try1"></p> -->
+
+
+<div id="loader"></div>
+<!-- <center><font size="10"><p id="demo"></p></font></center> -->
+
+<input type="button" id="btm1" class="goBack" style="margin-left: 2.5cm; margin-top: 0cm;" value="Loading Data Now... " onclick="history.back(-1)" />
+
+<div class="container1" style="margin-top: -1cm; margin-left: 10cm">
+    <nav>  
+
+      <ul class="mcd-menu1">
+      <li>
+        <a href="" class="active">
+          <i class="fa fa-edit"></i>
+          <center><font size=6px>All Similar Keywords</font></center>
+          <small>Sorted by Score</small>
+        </a>
+      </li>
+
+      <!-- <li><p id="demo2"></p></li> -->
+      
+      <!-- <li><p><em><a href="index2.html"><font color=blue size="4">Title aspirin </font></a></em><font color=red size="3">Description dsksjkdjkdjkd...</font></p></li> -->
+      <!-- <li><p><em>The United Kingdom</em> of Great Britain and ...</p></li> -->
+      </ul>
+    </nav>
+</div>
+
+
+
+
+
+
+<input type="button" id="btm2" class="goBack" style="margin-left: 2.5cm; margin-top: 3.5cm;" value="Please wait 3 seconds" onclick="history.back(-1)" />
+
+
+
+
+
+<!-- <button onclick="goBack()">Go Back</button> -->
+
+<script language="JavaScript">
+
+var parameters = window.location.search.substring(1);
+
+var input1 = decodeURIComponent(parameters.split("=")[1]).replace(/\+/g,' '); 
+
+
+// decodeURIComponent(test1)
+
+
+// document.getElementById("try1").innerHTML = postData(input1);
+// var input2 = nlp(input1).out('normal')
+// var str1 = nlp(input2).ngrams().sort().out('array')
+// 
+// document.getElementById("try").innerHTML = str1;
+// document.getElementById("try1").innerHTML = input2;
+// document.getElementById("try1").innerHTML = str1[0];
+// console.log(str1)
+// console.log(input2)
+// console.log(str1[0])
+// document.getElementById("try1").innerHTML = postData(input1);
+//var l = unescape(temp[1]);
+//document.getElementById("demo").innerHTML = input1;
+
+// function goBack() {
+//     window.history.back()
+// }
+
+// var inputa = /\binput1\b/gi
+var inputa = new RegExp("\\b"+input1+"\\b");
+var x=0;
+
+d3.json("keyword-dic-amazon-easy-health-50000.json", function(json_object) {
+           
+           var keys = Object.keys(json_object)
+
+           var id = 0;
+           
+
+
+           for(i=0; i<keys.length; i++){
+               // var keyarray = nlp(keys[i]).ngrams().sort().out('array')
+
+               if(i==0){
+                 console.log('Change text on the button here!...')
+
+                 var elem1 = document.getElementById("btm1");
+                 var elem2 = document.getElementById("btm2");
+
+                 
+                 // if (elem.value=="Close Curtain") 
+                  elem1.value = "Go Back";
+                  elem2.value = "Go Back";
+
+                 // document.button.innerHTML = 'wait';
+               }
+               
+                     
+               if(inputa.test(keys[i]))  {
+                   // console.log(keys[i]) 
+                   x=1;
+                   //resultBox0.style.display = "block";
+                   var outkeys = Object.keys(json_object[keys[i]])
+                  
+                   console.log(outkeys);
+
+                   
+                   var fafa = document.createElement("ul")
+
+
+                   for (j = 0; j < outkeys.length; j++) {
+                        
+                        if (outkeys[j].split(" ****** ")[1] != 'nan' && outkeys[j] != 'sum') {
+
+                        var para = document.createElement("a")
+                       
+                        // var link = index3.html;
+                        // var link = 'https://amazon.com/dp/' + outkeys[j]
+                        // var link = 'localhost:8000/index3.html?input=' + outkeys[j]
+                        var link = 'index3.html?input='+ outkeys[j]
+
+
+                        // console.log(link);
+
+
+                        para.href= link;
+
+                        
+                        para.innerHTML = outkeys[j].split(" ****** ")[1] + "<br> <i>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp"  + "<font style='color:#cd3266' size='3px'>" + "(Score:" + json_object[keys[i]][outkeys[j]] + ")" + "</font></i>"
+                        
+
+                        var lala = document.createElement("li")
+                        lala.appendChild(para)
+
+                        
+                        fafa.appendChild(lala)
+
+    
+                        }
+                      }
+
+                     
+
+
+
+                     var a1 = document.createElement("a")
+
+                     id += 1;
+                  
+
+                     a1.innerHTML += "&nbsp &nbsp &nbsp &nbsp" + "<font style='color:#CC00CC'>" + id + "</font>" + ". &nbsp "+ keys[i] + "<br> <i>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp"  + "<font style='color:#cd3266' size='3px'>" + "(Score:" + json_object[keys[i]]['sum'] + ")" + "</font></i>" 
+
+                     // #FF0000
+
+              
+                     a1.href = ""
+                     a1.setAttribute( 'style', 'font-weight:bold;' )
+                 
+                     a1.style.fontSize = '22px';
+                     // a1.setAttribute( "class", "fa fa-home" )
+
+
+
+
+                     var a2 = document.createElement("li")
+                     a2.appendChild(a1)
+                     a2.appendChild(fafa)
+
+
+
+
+                     
+                     // console.log(divn)
+                      
+                     
+
+                     // document.getElementsByClassName("mcd-menu")[0].appendChild(a2);
+                     document.querySelector(".mcd-menu1").appendChild(a2);
+
+                 }
+                   
+
+           
+
+              //  if(x==0){
+              // //resultBox0.style.display = "block";
+              //     console.log("fuck")
+              //     document.getElementById("demo1").innerHTML = "not in database"; 
+              //    }
+
+            }
+
+           
+});
+
+// Wait for window load
+    $(window).load(function() {
+        // Animate loader off screen
+        $("#loader").animate({
+            top: -200
+            // -200
+        }, 1500);
+    });
+
+
+
+    // console.log(str1)
+
+
+// function postData(xx) {
+//     $.ajax({
+//         type: "GET",
+//         url: "/addnumber",
+//         data: { param: xx },
+//         success: callbackFunc
+//     });
+// }
+
+
+// function callbackFunc(response) {
+//     // do something with the response
+//     return response
+//     console.log(response);
+// }
+
+
+
+// document.getElementById("demo1").innerHTML = "fuckkkkkk";
+
+// xxxx
+</script>
+
+</body>
+</html>    
